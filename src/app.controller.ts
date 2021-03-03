@@ -9,4 +9,9 @@ export class AppController {
     getHello(): string {
         return this.appService.getHello();
     }
+
+	@Get('ab*cd')
+	getTest(): string {
+		return this.appService.getTest();
+	}
 }
