@@ -1,11 +1,15 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+import { ValidationErrorFilter } from './modules/filters/mongo-exception.filter';
 
 declare const module: any;
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
+	//app.useGlobalPipes(new ValidationPipe());
+	app.useGlobalFilters(new ValidationErrorFilter());
 	await app.listen(3000);
 
 	if (module.hot) {
