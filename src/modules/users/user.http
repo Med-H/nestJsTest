@@ -1,0 +1,17 @@
+# REST Client tests on https://github.com/tronalddump-io/tronald-app
+@baseUrl = http://localhost:3000
+
+### Test Posting user
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "test",
+    "age": 29,
+	"password": "th3matr1x_20T"
+}
+
+### Test Getting user
+GET {{baseUrl}}/users
+content-type: application/json
+
