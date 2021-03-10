@@ -6,7 +6,15 @@ import {
 	MinLength,
 } from 'class-validator';
 
-export class CreateUserDto {
+class BaseDto {
+	constructor(name: string) {
+		this.name = name;
+	}
+
+	@IsString()
+	readonly name: string;
+}
+export class CreateUserDto extends BaseDto {
 	@IsString()
 	readonly name: string;
 
@@ -21,3 +29,7 @@ export class CreateUserDto {
 	})
 	readonly password: string;
 }
+
+export class FindUserDto extends BaseDto {}
+export class UpdateUserDto extends BaseDto {}
+export class DeleteUserDto extends BaseDto {}

@@ -1,5 +1,4 @@
-import { Controller, Get, HostParam, Ip, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -8,8 +7,7 @@ export class AppController {
 	constructor(private readonly appService: AppService) {}
 
 	@Get()
-	getHello(@Ip() request: Request): string {
-		console.log(request);
+	getHello(): string {
 		return this.appService.getHello();
 	}
 
