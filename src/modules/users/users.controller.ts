@@ -28,8 +28,8 @@ import { Roles } from '../guards/roles.decorator';
 import { LoggingInterceptor } from '../interceptor/logging.interceptor';
 
 @Controller('users')
-@UseGuards(RolesGuard)
 @UseInterceptors(LoggingInterceptor)
+@UseGuards(RolesGuard)
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
