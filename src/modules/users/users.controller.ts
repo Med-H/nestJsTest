@@ -10,6 +10,7 @@ import {
 	Query,
 	UseFilters,
 	UseGuards,
+	UseInterceptors,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
@@ -24,9 +25,11 @@ import { MongoExceptionFilter } from '../filters/mongo-exception.filter';
 import { ParsePagination } from '../pipes/pagination-offset.pipe';
 import { RolesGuard } from '../guards/roles.guard';
 import { Roles } from '../guards/roles.decorator';
+import { LoggingInterceptor } from '../interceptor/logging.interceptor';
 
 @Controller('users')
 @UseGuards(RolesGuard)
+@UseInterceptors(LoggingInterceptor)
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 

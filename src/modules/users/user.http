@@ -47,7 +47,7 @@ PUT {{host}}/{{userRoutePath}} HTTP/1.1
 content-type: application/json
 
 {
-    "name": "test3"
+    "name": "test4"
 }
 
 ### Test Getting user
