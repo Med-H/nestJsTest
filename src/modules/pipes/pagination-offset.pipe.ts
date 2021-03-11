@@ -1,11 +1,4 @@
-import {
-	PipeTransform,
-	Injectable,
-	ArgumentMetadata,
-	BadRequestException,
-} from '@nestjs/common';
-import { plainToClass } from 'class-transformer';
-import { validate } from 'class-validator';
+import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
 import { PaginationQueryDto } from '../users/dto/pagination-user.dto';
 
 @Injectable()

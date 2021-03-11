@@ -2,12 +2,23 @@
 @hostname = http://localhost
 @port = 3000
 @host = {{hostname}}:{{port}}
+@userRoutePath = users
 
 ### Test creating new user
-@userRoutePath = users
-# @name post
 POST {{host}}/{{userRoutePath}} HTTP/1.1
 content-type: application/json
+roles: admin
+
+{
+    "name": "test7",
+    "age": 29,
+	"password": "th3matr1x_20T"
+}
+
+### Test creating new user with wrong role
+POST {{host}}/{{userRoutePath}} HTTP/1.1
+content-type: application/json
+roles: guest
 
 {
     "name": "test7",
