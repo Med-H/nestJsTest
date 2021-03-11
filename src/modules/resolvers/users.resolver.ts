@@ -1,5 +1,5 @@
-import { Get } from '@nestjs/common';
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql';
+import { PaginationQueryDto } from '../users/dto/pagination-user.dto';
 import { User } from '../users/schemas/user.schema';
 import { UsersService } from '../users/users.service';
 
@@ -7,9 +7,11 @@ import { UsersService } from '../users/users.service';
 export class UsersResolver {
 	constructor(private readonly itemsService: UsersService) {}
 
-	@Get('/graphql')
 	@Query(() => [User])
-	async findAll(): Promise<User[]> {
-		return this.itemsService.findAll({ offset: 0, limit: 0 });
+	async findAll(
+		@Args('input', { type: () => PaginationQueryDto })
+		paginationQueryDto,
+	): Promise<User[]> {
+		return this.itemsService.findAll(paginationQueryDto);
 	}
 }

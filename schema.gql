@@ -2,8 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input PaginationQueryDto {
+  limit: Float!
+  offset: Float!
+}
+
 type Query {
-  findAll: [User!]!
+  findAll(input: PaginationQueryDto!): [User!]!
 }
 
 type User {

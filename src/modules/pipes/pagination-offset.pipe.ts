@@ -5,9 +5,10 @@ import { PaginationQueryDto } from '../users/dto/pagination-user.dto';
 export class ParsePagination
 	implements PipeTransform<any, Promise<PaginationQueryDto>> {
 	async transform(
-		{ limit, offset }: any,
+		value: any,
 		_argumentMetadata: ArgumentMetadata,
 	): Promise<PaginationQueryDto> {
+		let { limit, offset } = value;
 		limit = this.getLimit(limit);
 		offset = this.getOffset(offset);
 
