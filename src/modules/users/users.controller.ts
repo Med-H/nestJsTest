@@ -22,6 +22,7 @@ import {
 } from './dto/create-user.dto';
 import { MongoExceptionFilter } from '../filters/mongo-exception.filter';
 import { PaginationQueryDto } from './dto/pagination-user.dto';
+import { ParsePagination } from '../pipes/pagintion-offset.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -36,16 +37,13 @@ export class UsersController {
 
 	@Get('/all')
 	async findAll(
-		@Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
-		@Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+		@Query(new ParsePagination()) paginationQueryDto: any,
 	): Promise<User[]> {
-		const paginationQueryDto = new PaginationQueryDto();
-		paginationQueryDto.limit = limit;
-		paginationQueryDto.offset = offset;
 		return this.usersService.findAll(paginationQueryDto);
 	}
 
 	@Put()
+	@UseFilters(MongoExceptionFilter)
 	update(@Body() updateUserDto: UpdateUserDto) {
 		return this.usersService.update(updateUserDto);
 	}

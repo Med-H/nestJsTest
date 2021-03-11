@@ -3,27 +3,36 @@
 @port = 3000
 @host = {{hostname}}:{{port}}
 
-### Test Posting user
-# @name login
-POST {{host}}/users HTTP/1.1
+### Test creating new user
+@userRoutePath = users
+# @name post
+POST {{host}}/{{userRoutePath}} HTTP/1.1
 content-type: application/json
 
 {
-    "name": "test6",
+    "name": "test7",
     "age": 29,
 	"password": "th3matr1x_20T"
 }
 
-### Test Getting user
-GET {{host}}/users/all
+### Test Getting all user
+GET {{host}}/{{userRoutePath}}/all
 content-type: application/json
 
-### Test Getting user with Query
-GET {{host}}/users/all?limit=1&offset=1
+### Test Getting users with wrong Query
+GET {{host}}/{{userRoutePath}}/all?limit=a&offset=b
 content-type: application/json
 
-### Test Putting user
-PUT {{host}}/users HTTP/1.1
+### Test Getting user with wrong offset & limit Queries
+GET {{host}}/{{userRoutePath}}/all?limit=-1&offset=-1
+content-type: application/json
+
+### Test Getting user with proper queries
+GET {{host}}/{{userRoutePath}}/all?limit=2&offset=1
+content-type: application/json
+
+### Test updating user
+PUT {{host}}/{{userRoutePath}} HTTP/1.1
 content-type: application/json
 
 {
@@ -31,9 +40,9 @@ content-type: application/json
 }
 
 ### Test Getting user
-GET {{host}}/users/test
+GET {{host}}/{{userRoutePath}}/test
 content-type: application/json
 
 ### Test Deleting user
-DELETE  {{host}}/users/test2
+DELETE  {{host}}/{{userRoutePath}}/test2
 content-type: application/json

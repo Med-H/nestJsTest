@@ -1,4 +1,4 @@
-# REST Client tests on https://github.com/tronalddump-io/tronald-app
+# REST Client tests based on the Rest Client vscode extension
 @baseUrl = http://localhost:3000
 
 ### Get a random clever quote
