@@ -1,3 +1,4 @@
+import { Field, InputType, Int } from '@nestjs/graphql';
 import {
 	IsInt,
 	IsString,
@@ -5,22 +6,22 @@ import {
 	MaxLength,
 	MinLength,
 } from 'class-validator';
-
+@InputType()
 class BaseDto {
 	constructor(name: string) {
 		this.name = name;
 	}
 
+	@Field()
 	@IsString()
 	readonly name: string;
 }
 export class CreateUserDto extends BaseDto {
-	@IsString()
-	readonly name: string;
-
+	@Field(() => Int)
 	@IsInt()
 	readonly age: number;
 
+	@Field(() => Int)
 	@IsString()
 	@MinLength(4)
 	@MaxLength(20)
