@@ -11,8 +11,13 @@ type Query {
   findAll(input: PaginationQueryDto!): [User!]!
 }
 
+type Training {
+  name: String!
+}
+
 type User {
   age: Float!
   name: String!
   password: String!
+  trainings: [Training!]
 }

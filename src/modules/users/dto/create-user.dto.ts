@@ -1,4 +1,3 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
 import {
 	IsInt,
 	IsString,
@@ -6,22 +5,18 @@ import {
 	MaxLength,
 	MinLength,
 } from 'class-validator';
-@InputType()
 class BaseDto {
 	constructor(name: string) {
 		this.name = name;
 	}
 
-	@Field()
 	@IsString()
 	readonly name: string;
 }
 export class CreateUserDto extends BaseDto {
-	@Field(() => Int)
 	@IsInt()
 	readonly age: number;
 
-	@Field(() => Int)
 	@IsString()
 	@MinLength(4)
 	@MaxLength(20)
@@ -29,6 +24,16 @@ export class CreateUserDto extends BaseDto {
 		message: 'password too weak',
 	})
 	readonly password: string;
+}
+
+export class CreateTrainingDto extends BaseDto {
+	constructor(name: string, training: string) {
+		super(name);
+		this.training = training;
+	}
+
+	@IsString()
+	readonly training: string;
 }
 
 export class FindUserDto extends BaseDto {}

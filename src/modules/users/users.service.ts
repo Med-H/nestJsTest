@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import {
+	CreateTrainingDto,
 	CreateUserDto,
 	DeleteUserDto,
 	FindUserDto,
@@ -38,5 +39,15 @@ export class UsersService {
 
 	async delete(deleteUserDto: DeleteUserDto): Promise<any> {
 		return this.userModel.deleteOne(deleteUserDto).exec();
+	}
+
+	async addReview(createTrainingDto: CreateTrainingDto) {
+		return this.userModel
+			.findOneAndUpdate(
+				createTrainingDto as FindUserDto,
+				{ review: createTrainingDto.training },
+				{ new: true },
+			)
+			.exec();
 	}
 }

@@ -16,6 +16,7 @@ import {
 import { UsersService } from './users.service';
 import { User } from './schemas/user.schema';
 import {
+	CreateTrainingDto,
 	CreateUserDto,
 	DeleteUserDto,
 	FindUserDto,
@@ -52,6 +53,15 @@ export class UsersController {
 	@UseFilters(MongoExceptionFilter)
 	update(@Body() updateUserDto: UpdateUserDto) {
 		return this.usersService.update(updateUserDto);
+	}
+
+	@Put('/review')
+	@UseFilters(MongoExceptionFilter)
+	async addReview(
+		@Param('name') name: string,
+		@Param('review') review: string,
+	) {
+		return this.usersService.addReview(new CreateTrainingDto(name, review));
 	}
 
 	@Get(':name')

@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { Training } from './training.schema';
 
 export type UserDocument = User & Document;
 
@@ -24,6 +25,10 @@ export class User {
 	@Prop()
 	@Field()
 	password: string;
+
+	@Prop({ type: Types.ObjectId, ref: 'Training', required: false })
+	@Field(() => [Training], { nullable: true })
+	trainings?: Training[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
