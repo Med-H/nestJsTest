@@ -10,7 +10,7 @@ content-type: application/json
 roles: admin
 
 {
-    "name": "test7",
+    "name": "test4",
     "age": 29,
 	"password": "th3matr1x_20T"
 }
@@ -39,7 +39,7 @@ GET {{host}}/{{userRoutePath}}/all?limit=-1&offset=-1
 content-type: application/json
 
 ### Test Getting user with proper queries
-GET {{host}}/{{userRoutePath}}/all?limit=2&offset=1
+GET {{host}}/{{userRoutePath}}/all?limit=10&offset=0
 content-type: application/json
 
 ### Test updating user
@@ -51,9 +51,9 @@ content-type: application/json
 }
 
 ### Test Getting user
-GET {{host}}/{{userRoutePath}}/test
+GET {{host}}/{{userRoutePath}}/test1
 content-type: application/json
 
 ### Test Deleting user
-DELETE  {{host}}/{{userRoutePath}}/test2
+DELETE  {{host}}/{{userRoutePath}}/test 4
 content-type: application/json
